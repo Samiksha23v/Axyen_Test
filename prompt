@@ -32,3 +32,31 @@ def generate_password(length=12):
 if __name__ == '__main__':
     password = generate_password()
     print(f'Generated Password: {password}')
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Form</title>
+</head>
+<body>
+    <h1>Employee Registration Form</h1>
+    <form action="#" method="post">
+        <label for="name">Employee Name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="phone">Phone Number:</label><br>
+        <input type="tel" id="phone" name="phone" required><br><br>
+
+        <label for="job_title">Job Title:</label><br>
+        <input type="text" id="job_title" name="job_title" required><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
