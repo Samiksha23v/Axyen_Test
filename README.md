@@ -2,7 +2,7 @@
 
 Turn vision into a flawless, executable plan. PlanForge guides teams through a five-phase project planning journey: Vision & Foundation, Scope & Timeline, Resources & Budget, Risk Management, and Final Plan Assembly.
 
-## Getting Started
+<!-- ## Getting Started -->
 
 ```bash
 npm install
