@@ -2,7 +2,7 @@ class ListNode:
     """Node class for a singly linked list."""
     def __init__(self, val=0, next=None):
         self.val = val
-        self.next = next
+        # self.next = next
 
 class LinkedList:
     """Singly linked list implementation with reversal capability."""
