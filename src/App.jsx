@@ -13,9 +13,9 @@ const router = createBrowserRouter([
     element: <AppShell />,
     children: [
       { index: true, element: <HomePage /> },
+      { path: 'about', element: <AboutPage /> },
       { path: 'how-it-works', element: <HowItWorksPage /> },
       { path: 'meal-plans', element: <MealPlansPage /> },
-      { path: 'about', element: <AboutPage /> },
       { path: 'contact', element: <ContactPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],

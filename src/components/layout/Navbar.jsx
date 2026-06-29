@@ -13,47 +13,51 @@ export default function Navbar() {
   const [open, setOpen] = useState(false)
 
   const linkClass = ({ isActive }) =>
-    `text-sm font-medium transition-colors hover:text-green-600 ${
-      isActive ? 'text-green-600' : 'text-gray-700'
+    `px-3 py-2 text-sm font-medium transition-colors ${
+      isActive ? 'text-green-700' : 'text-gray-600 hover:text-green-700'
     }`
 
   return (
-    <header className="fixed top-0 z-50 w-full border-b border-gray-100 bg-white/80 backdrop-blur">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-8 lg:px-16">
-        <Link to="/" className="flex items-center gap-2">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-green-600 text-sm font-bold text-white">
-            N
-          </span>
-          <span className="text-lg font-bold text-gray-900">NourishWell</span>
-        </Link>
-
-        <div className="hidden items-center gap-8 md:flex">
-          {links.map((l) => (
-            <NavLink key={l.to} to={l.to} end={l.end} className={linkClass}>
-              {l.label}
-            </NavLink>
-          ))}
-          <Link
-            to="/contact"
-            className="rounded-lg bg-green-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-green-700"
-          >
-            Get Started
+    <header className="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur border-b border-gray-100">
+      <nav className="mx-auto max-w-7xl px-4 md:px-8 lg:px-16">
+        <div className="flex h-16 items-center justify-between">
+          <Link to="/" className="flex items-center gap-2" onClick={() => setOpen(false)}>
+            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-green-600 text-white font-bold">N</span>
+            <span className="text-lg font-bold text-gray-900">Nourishly</span>
           </Link>
-        </div>
 
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          className="flex h-10 w-10 items-center justify-center rounded-lg text-gray-700 hover:bg-gray-100 md:hidden"
-          aria-label="Toggle menu"
-        >
-          <span className="text-2xl leading-none">{open ? '\u2715' : '\u2630'}</span>
-        </button>
+          <div className="hidden md:flex items-center gap-1">
+            {links.map((l) => (
+              <NavLink key={l.to} to={l.to} end={l.end} className={linkClass}>
+                {l.label}
+              </NavLink>
+            ))}
+            <Link
+              to="/contact"
+              className="ml-3 rounded-lg bg-green-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-700 transition-colors"
+            >
+              Start Free
+            </Link>
+          </div>
+
+          <button
+            className="md:hidden inline-flex items-center justify-center rounded-md p-2 text-gray-700 hover:bg-gray-100"
+            onClick={() => setOpen((v) => !v)}
+            aria-label="Toggle menu"
+          >
+            <span className="sr-only">Menu</span>
+            <div className="space-y-1.5">
+              <span className={`block h-0.5 w-6 bg-gray-800 transition ${open ? 'translate-y-2 rotate-45' : ''}`} />
+              <span className={`block h-0.5 w-6 bg-gray-800 transition ${open ? 'opacity-0' : ''}`} />
+              <span className={`block h-0.5 w-6 bg-gray-800 transition ${open ? '-translate-y-2 -rotate-45' : ''}`} />
+            </div>
+          </button>
+        </div>
       </nav>
 
       {open && (
-        <div className="border-t border-gray-100 bg-white md:hidden">
-          <div className="flex flex-col px-4 py-4">
+        <div className="md:hidden border-t border-gray-100 bg-white">
+          <div className="px-4 py-3 space-y-1">
             {links.map((l) => (
               <NavLink
                 key={l.to}
@@ -61,8 +65,8 @@ export default function Navbar() {
                 end={l.end}
                 onClick={() => setOpen(false)}
                 className={({ isActive }) =>
-                  `rounded-lg px-3 py-3 text-sm font-medium transition-colors hover:bg-green-50 ${
-                    isActive ? 'text-green-600' : 'text-gray-700'
+                  `block rounded-md px-3 py-2 text-base font-medium ${
+                    isActive ? 'bg-green-50 text-green-700' : 'text-gray-700 hover:bg-gray-50'
                   }`
                 }
               >
@@ -72,9 +76,9 @@ export default function Navbar() {
             <Link
               to="/contact"
               onClick={() => setOpen(false)}
-              className="mt-2 rounded-lg bg-green-600 px-4 py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-green-700"
+              className="block rounded-lg bg-green-600 px-3 py-2 text-center text-base font-semibold text-white hover:bg-green-700"
             >
-              Get Started
+              Start Free
             </Link>
           </div>
         </div>
