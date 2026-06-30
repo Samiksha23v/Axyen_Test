@@ -1,105 +1,139 @@
-# Axyen_test
+# Linked List Reversal in Python
 
-This is the Axyen_test repository.
+A complete implementation of a singly linked list with both iterative and recursive reversal methods.
 
-## Get the list of files changed in a Pull Request using GitHub Actions
+## Features
 
-You can retrieve and print the list of files changed in a Pull Request (PR) by running a GitHub Actions workflow that calls the GitHub REST API. This is useful for:
+- **Complete Linked List Implementation**: Full-featured singly linked list with append, prepend, and display methods
+- **Two Reversal Methods**:
+  - Iterative reversal (O(n) time, O(1) space)
+  - Recursive reversal (O(n) time, O(n) space)
+- **Edge Case Handling**: Works correctly with empty lists, single elements, and multiple data types
+- **Comprehensive Tests**: Full unit test coverage with multiple test cases
 
-- Validating which files were touched (e.g., only docs, only specific directories)
-- Driving conditional checks (e.g., run tests only when certain paths change)
-- Producing a clear audit/log output for reviewers and CI
+## Files
 
-### Purpose
+- `linked_list.py` - Core linked list implementation with Node and LinkedList classes
+- `reverse_linked_list.py` - Main demonstration script showing various use cases
+- `test_linked_list.py` - Unit tests for all functionality
+- `README.md` - This documentation file
 
-This workflow fetches the changed file paths for the current Pull Request using the GitHub REST API and prints:
+## Usage
 
-- Each changed file path (one per line)
-- The total number of changed files
+### Basic Example
 
-### When it runs
+```python
+from linked_list import LinkedList
 
-- On Pull Request events: `opened`, `synchronize`, and `reopened`
+# Create a linked list
+ll = LinkedList()
 
-### Required permissions
+# Add elements
+ll.append(1)
+ll.append(2)
+ll.append(3)
+ll.append(4)
+ll.append(5)
 
-This workflow uses minimal permissions:
+print(f"Original: {ll}")  # Output: 1 -> 2 -> 3 -> 4 -> 5
 
-- `pull-requests: read` (to read PR metadata and file lists)
-- `contents: read` (commonly required for PR-context workflows)
+# Reverse using iterative method
+ll.reverse()
+print(f"Reversed: {ll}")  # Output: 5 -> 4 -> 3 -> 2 -> 1
 
-### Step-by-step setup
-
-1. **Create a workflow file** in your repository at:
-
-   - `.github/workflows/changed-files.yml`
-
-2. **Paste the workflow YAML** from the example below into that file.
-
-3. **Commit and push** the changes to GitHub.
-
-4. **Open or update a Pull Request**:
-
-   - The workflow triggers automatically on `pull_request` events.
-   - View the output under **Actions → (workflow run) → Get changed files**.
-
-### Example workflow: `.github/workflows/changed-files.yml`
-
-This workflow triggers on pull requests, uses `actions/github-script@v7` with `secrets.GITHUB_TOKEN`, calls `github.rest.pulls.listFiles`, paginates through results, prints each changed file path (one per line), and prints a total count.
-
-```yaml
-name: Get changed files
-
-on:
-  pull_request:
-    types: [opened, synchronize, reopened]
-
-permissions:
-  pull-requests: read
-  contents: read
-
-jobs:
-  changed_files:
-    name: Get changed files
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: List changed files in PR
-        uses: actions/github-script@v7
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const { owner, repo } = context.repo;
-            const pull_number = context.payload.pull_request?.number;
-
-            if (!pull_number) {
-              core.setFailed('This workflow must be triggered by a pull_request event.');
-              return;
-            }
-
-            // Fetch changed files with pagination.
-            const files = await github.paginate(
-              github.rest.pulls.listFiles,
-              {
-                owner,
-                repo,
-                pull_number,
-                per_page: 100,
-              },
-              (response) => response.data
-            );
-
-            const filenames = files.map((f) => f.filename);
-
-            core.info('Changed files:');
-            for (const name of filenames) {
-              core.info(name);
-            }
-
-            core.info(`Total changed files: ${filenames.length}`);
+# Reverse using recursive method
+ll.reverse_recursive()
+print(f"Reversed again: {ll}")  # Output: 1 -> 2 -> 3 -> 4 -> 5
 ```
 
-### Notes
+### Running the Demo
 
-- `secrets.GITHUB_TOKEN` is provided automatically by GitHub Actions.
-- The API method used is `github.rest.pulls.listFiles` and results are paginated automatically with `github.paginate`.
+```bash
+python reverse_linked_list.py
+```
+
+### Running Tests
+
+```bash
+python test_linked_list.py
+```
+
+Or with verbose output:
+
+```bash
+python test_linked_list.py -v
+```
+
+## API Reference
+
+### Node Class
+
+```python
+Node(data)
+```
+
+Represents a single node in the linked list.
+
+**Attributes:**
+- `data`: The value stored in the node
+- `next`: Reference to the next node (or None)
+
+### LinkedList Class
+
+```python
+LinkedList()
+```
+
+Represents a singly linked list.
+
+**Methods:**
+
+- `append(data)` - Add element to the end of the list
+- `prepend(data)` - Add element to the beginning of the list
+- `reverse()` - Reverse the list in-place (iterative)
+- `reverse_recursive()` - Reverse the list using recursion
+- `display()` - Return list representation of elements
+- `is_empty()` - Check if the list is empty
+- `__len__()` - Get the length of the list
+- `__str__()` - Get string representation
+
+## Algorithm Explanation
+
+### Iterative Reversal
+
+The iterative method uses three pointers to reverse the links:
+
+1. `prev` - Initially None, becomes the new head
+2. `current` - Starts at head, traverses the list
+3. `next_node` - Temporarily stores the next node
+
+**Time Complexity:** O(n)  
+**Space Complexity:** O(1)
+
+### Recursive Reversal
+
+The recursive method reverses the list by:
+
+1. Recursively reaching the end of the list
+2. Reversing links on the way back
+3. Returning the new head
+
+**Time Complexity:** O(n)  
+**Space Complexity:** O(n) due to call stack
+
+## Edge Cases Handled
+
+- Empty list reversal
+- Single element list
+- Two element list
+- Multiple data types (integers, strings, objects)
+- Multiple reversals
+
+## Requirements
+
+- Python 3.6 or higher
+- No external dependencies required
+
+## License
+
+This is a demonstration project for educational purposes.
