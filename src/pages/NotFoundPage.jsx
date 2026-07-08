@@ -1,14 +1,16 @@
-import Button from '../components/ui/Button'
+import Button from '../components/ui/Button.jsx'
 
 export default function NotFoundPage() {
   return (
-    <section className="min-h-[70vh] flex items-center justify-center px-4">
+    <div className="pt-16 min-h-[70vh] flex items-center justify-center px-4">
       <div className="text-center">
-        <p className="text-6xl font-bold text-blue-600">404</p>
-        <h1 className="mt-4 text-3xl font-bold text-gray-900">Page not found</h1>
-        <p className="mt-2 text-gray-600">The page you're looking for doesn't exist or has moved.</p>
-        <div className="mt-8"><Button to="/">Back to Home</Button></div>
+        <div className="text-6xl mb-4">🎨</div>
+        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">404</h1>
+        <p className="mt-3 text-gray-600 dark:text-gray-400">This canvas is still blank. Let's get you back home.</p>
+        <div className="mt-6">
+          <Button to="/">Back to Home</Button>
+        </div>
       </div>
-    </section>
+    </div>
   )
 }

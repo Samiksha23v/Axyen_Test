@@ -1,103 +1,109 @@
-import Button from '../components/ui/Button'
-import Card from '../components/ui/Card'
-import SectionHeading from '../components/ui/SectionHeading'
+import Button from '../components/ui/Button.jsx'
+import Card from '../components/ui/Card.jsx'
+import SectionHeading from '../components/ui/SectionHeading.jsx'
 
-const phases = [
-  { n: '01', title: 'Vision & Foundation', status: 'Completed', desc: 'Define purpose, objectives, and success criteria before any work begins.' },
-  { n: '02', title: 'Scope, Tasks & Timeline', status: 'Active', desc: 'Break the vision into deliverables, tasks, and a realistic schedule.' },
-  { n: '03', title: 'Resources & Budget', status: 'Active', desc: 'Allocate people, tools, and funds across the project lifecycle.' },
-  { n: '04', title: 'Risk Management', status: 'Draft', desc: 'Identify, assess, and plan mitigation for the risks that matter.' },
-  { n: '05', title: 'Final Plan Assembly & Review', status: 'Draft', desc: 'Consolidate everything into one approved, shareable plan.' },
+const features = [
+  { emoji: '🎨', title: 'Paint & Sip', desc: 'Grab a canvas, pick up a brush, and create while you sip your morning brew.' },
+  { emoji: '🌅', title: 'Early Bird Hours', desc: 'Doors open at 6 AM. Beat the rush and greet the sunrise with color.' },
+  { emoji: '☕', title: 'Craft Coffee', desc: 'Ethically-sourced, freshly-roasted beans pulled to bright perfection.' },
+  { emoji: '🥐', title: 'Fresh Bakes', desc: 'Pastries baked in-house every morning to fuel your creativity.' },
 ]
-
-const statusColor = {
-  Completed: 'bg-green-100 text-green-700',
-  Active: 'bg-blue-100 text-blue-700',
-  Draft: 'bg-gray-100 text-gray-600',
-}
 
 export default function HomePage() {
   return (
     <div>
-      <section className="relative min-h-screen flex items-center">
-        <img
-          src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1600"
-          alt="Team collaborating on a project plan"
-          loading="lazy"
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gray-900/70" />
-        <div className="relative mx-auto max-w-7xl px-4 md:px-8 lg:px-16 py-24 text-white">
-          <p className="text-sm font-semibold uppercase tracking-wider text-blue-300">Project Planning, Phase by Phase</p>
-          <h1 className="mt-4 text-4xl md:text-6xl font-bold leading-tight max-w-3xl">
-            Turn vision into a flawless, executable plan.
-          </h1>
-          <p className="mt-6 text-lg text-gray-200 max-w-2xl">
-            PlanForge guides your team through five structured phases — from foundation to final review — so nothing slips through the cracks.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-4">
-            <Button to="/phases">Explore the Phases</Button>
-            <Button to="/contact" variant="outline">Talk to Us</Button>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 md:py-24">
-        <div className="mx-auto max-w-7xl px-4 md:px-8 lg:px-16">
-          <SectionHeading
-            center
-            eyebrow="The Five Phases"
-            title="A clear path from idea to delivery"
-            subtitle="Each phase builds on the last, with live status so everyone knows exactly where the plan stands."
+      {/* Hero */}
+      <section className="relative pt-16 min-h-[90vh] flex items-center">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1600"
+            alt="Bright cafe interior with morning light"
+            className="w-full h-full object-cover"
+            loading="lazy"
           />
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {phases.map((p) => (
-              <Card key={p.n}>
-                <div className="flex items-center justify-between">
-                  <span className="text-2xl font-bold text-blue-600">{p.n}</span>
-                  <span className={`rounded-full px-3 py-1 text-xs font-semibold ${statusColor[p.status]}`}>{p.status}</span>
-                </div>
-                <h3 className="mt-4 text-lg font-semibold text-gray-900">{p.title}</h3>
-                <p className="mt-2 text-sm text-gray-600">{p.desc}</p>
-              </Card>
-            ))}
-          </div>
+          <div className="absolute inset-0 bg-gradient-to-r from-orange-50/95 via-orange-50/80 to-transparent dark:from-gray-950/95 dark:via-gray-950/80" />
         </div>
-      </section>
-
-      <section className="bg-blue-50 py-16 md:py-24">
-        <div className="mx-auto max-w-7xl px-4 md:px-8 lg:px-16 grid gap-12 md:grid-cols-2 items-center">
-          <div>
-            <SectionHeading
-              eyebrow="Why PlanForge"
-              title="Structure that scales with your project"
-              subtitle="Stop juggling scattered docs. Bring scope, budget, risk, and timeline into a single living plan."
-            />
-            <ul className="mt-6 space-y-3 text-gray-700">
-              <li className="flex gap-3"><span className="text-blue-600">✓</span> Real-time phase statuses keep stakeholders aligned</li>
-              <li className="flex gap-3"><span className="text-blue-600">✓</span> Built-in templates for scope, budget, and risk</li>
-              <li className="flex gap-3"><span className="text-blue-600">✓</span> One-click final plan assembly and export</li>
-            </ul>
-            <div className="mt-8">
-              <Button to="/about" variant="secondary">Learn More</Button>
+        <div className="relative max-w-7xl mx-auto px-4 md:px-8 py-20">
+          <div className="max-w-2xl">
+            <span className="inline-block mb-4 px-4 py-1.5 rounded-full bg-orange-100 text-orange-700 dark:bg-orange-900/40 dark:text-orange-300 text-sm font-semibold">
+              🌻 A painting cafe for early risers
+            </span>
+            <h1 className="text-4xl md:text-6xl font-bold leading-tight text-gray-900 dark:text-white">
+              Paint, sip, and <span className="text-orange-500">rise with the sun.</span>
+            </h1>
+            <p className="mt-6 text-lg md:text-xl text-gray-600 dark:text-gray-300">
+              Bloom is where fresh coffee meets fresh canvases. Start your morning with
+              color, community, and the best cup in town.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Button to="/location">Find Our Location</Button>
+              <Button to="/menu" variant="secondary">View Menu</Button>
             </div>
           </div>
-          <img
-            src="https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=1200"
-            alt="Planning whiteboard session"
-            loading="lazy"
-            className="rounded-2xl shadow-lg w-full object-cover"
-          />
         </div>
       </section>
 
-      <section className="py-16 md:py-24">
-        <div className="mx-auto max-w-4xl px-4 md:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Ready to assemble your plan?</h2>
-          <p className="mt-4 text-lg text-gray-600">Move from draft to delivery with confidence. Start with phase one today.</p>
-          <div className="mt-8 flex justify-center gap-4">
-            <Button to="/phases">Get Started</Button>
-            <Button to="/timeline" variant="secondary">View Timeline</Button>
+      {/* Features */}
+      <section className="px-4 md:px-8 lg:px-16 py-16 md:py-24 max-w-7xl mx-auto">
+        <SectionHeading
+          eyebrow="Why Bloom"
+          title="Mornings made for creating"
+          subtitle="Everything you need to turn an ordinary sunrise into something worth painting."
+        />
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {features.map((f) => (
+            <Card key={f.title} className="p-6 text-center hover:-translate-y-1 transition-transform">
+              <div className="text-4xl mb-4">{f.emoji}</div>
+              <h3 className="font-semibold text-lg mb-2 text-gray-900 dark:text-white">{f.title}</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">{f.desc}</p>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* Painting experience */}
+      <section className="px-4 md:px-8 lg:px-16 py-16 md:py-24 bg-white dark:bg-gray-900">
+        <div className="max-w-7xl mx-auto grid gap-12 lg:grid-cols-2 items-center">
+          <div className="rounded-3xl overflow-hidden shadow-lg">
+            <img
+              src="https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=1200"
+              alt="People painting together at a bright table"
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+          <div>
+            <SectionHeading
+              center={false}
+              eyebrow="The Experience"
+              title="Coffee in one hand, brush in the other"
+              subtitle="No experience needed. Book a Sunrise Session and let our resident guide walk you through it — pastry and coffee included."
+            />
+            <ul className="space-y-4">
+              {['Pick your canvas & paints as you order', 'Guided sessions or free-paint any time', 'Every table stocked with brushes & inspiration'].map((t) => (
+                <li key={t} className="flex items-start gap-3">
+                  <span className="mt-0.5 flex-shrink-0 w-6 h-6 rounded-full bg-orange-500 text-white text-sm flex items-center justify-center">✓</span>
+                  <span className="text-gray-700 dark:text-gray-300">{t}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-8">
+              <Button to="/menu" variant="secondary">See Paint & Eat Options</Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="px-4 md:px-8 lg:px-16 py-16 md:py-24">
+        <div className="max-w-5xl mx-auto rounded-3xl bg-orange-500 text-white text-center px-6 py-14 md:py-20">
+          <h2 className="text-3xl md:text-5xl font-bold">Come bloom with us.</h2>
+          <p className="mt-4 text-lg text-orange-50 max-w-xl mx-auto">
+            We're brewing since 6 AM. Swing by, grab a canvas, and make your morning brighter.
+          </p>
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
+            <Button to="/location" variant="secondary">Find Our Location</Button>
+            <Button to="/contact" variant="ghost" className="text-white hover:bg-orange-600">Get in Touch</Button>
           </div>
         </div>
       </section>

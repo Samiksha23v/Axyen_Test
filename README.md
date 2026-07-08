@@ -1,13 +1,22 @@
-# PlanForge
+# Bloom — Painting Cafe
 
-Turn vision into a flawless, executable plan. PlanForge guides teams through a five-phase project planning journey: Vision & Foundation, Scope & Timeline, Resources & Budget, Risk Management, and Final Plan Assembly.
+A bright & energetic marketing site for Bloom, a painting cafe made for early risers.
+
+## Stack
+- React 18 + Vite
+- React Router v6
+- Tailwind CSS (with light/dark theme toggle)
+- Axios (API client wired for a future backend)
 
 ## Getting Started
 
 ```bash
 npm install
+cp .env.example .env
 npm run dev
 ```
+
+Open the URL printed in your terminal (usually http://localhost:5173).
 
 ## Build
 
@@ -16,13 +25,12 @@ npm run build
 npm run preview
 ```
 
-## Environment
+## Pages
+- **Home** — hero, features, painting experience, CTA to find location
+- **Menu** — full cafe menu
+- **About** — our story, core values, team
+- **Location** — address, hours, social handles
+- **Contact** — get in touch form
 
-Copy `.env.example` to `.env` and set `VITE_API_URL`.
-
-## Tech Stack
-
-- React 18 + Vite
-- React Router v6
-- Tailwind CSS
-- Axios
+## Theming
+Toggle light/dark from the navbar. Preference persists to localStorage.
