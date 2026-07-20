@@ -1,11 +1,11 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import AppShell from './components/layout/AppShell'
-import HomePage from './pages/HomePage'
-import AboutPage from './pages/AboutPage'
-import NutritionPlanPage from './pages/NutritionPlanPage'
-import MealPlansPage from './pages/MealPlansPage'
-import ContactPage from './pages/ContactPage'
-import NotFoundPage from './pages/NotFoundPage'
+import AppShell from './components/layout/AppShell.jsx'
+import HomePage from './pages/HomePage.jsx'
+import MenuPage from './pages/MenuPage.jsx'
+import AboutPage from './pages/AboutPage.jsx'
+import LocationPage from './pages/LocationPage.jsx'
+import ContactPage from './pages/ContactPage.jsx'
+import NotFoundPage from './pages/NotFoundPage.jsx'
 
 const router = createBrowserRouter([
   {
@@ -13,9 +13,9 @@ const router = createBrowserRouter([
     element: <AppShell />,
     children: [
       { index: true, element: <HomePage /> },
+      { path: 'menu', element: <MenuPage /> },
       { path: 'about', element: <AboutPage /> },
-      { path: 'nutrition-plan', element: <NutritionPlanPage /> },
-      { path: 'meal-plans', element: <MealPlansPage /> },
+      { path: 'location', element: <LocationPage /> },
       { path: 'contact', element: <ContactPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],

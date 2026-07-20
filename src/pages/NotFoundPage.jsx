@@ -1,17 +1,14 @@
-import Button from '../components/ui/Button'
+import Button from '../components/ui/Button.jsx'
 
 export default function NotFoundPage() {
   return (
-    <section className="max-w-7xl mx-auto px-4 md:px-8 lg:px-16 py-24 md:py-32 text-center">
-      <p className="text-sm font-semibold uppercase tracking-wider text-green-600">Error 404</p>
-      <h1 className="mt-4 text-5xl md:text-7xl font-bold text-gray-900">Page not found</h1>
-      <p className="mt-6 text-lg text-gray-600 max-w-xl mx-auto">
-        The page you're looking for doesn't exist or has moved. Let's get you back to your nutrition journey.
-      </p>
-      <div className="mt-10 flex justify-center gap-4">
+    <div className="pt-32 pb-24 px-4 text-center min-h-[60vh] flex flex-col items-center justify-center">
+      <div className="text-6xl mb-4">🎨</div>
+      <h1 className="text-4xl font-bold">404 — Blank Canvas</h1>
+      <p className="mt-3 text-gray-600 dark:text-gray-400">This page hasn't been painted yet.</p>
+      <div className="mt-8">
         <Button to="/">Back Home</Button>
-        <Button to="/meal-plans" variant="secondary">View Meal Plans</Button>
       </div>
-    </section>
+    </div>
   )
 }

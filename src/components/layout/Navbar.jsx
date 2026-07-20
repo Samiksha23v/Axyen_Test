@@ -1,76 +1,77 @@
 import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
+import { useApp } from '../../context/AppContext.jsx'
 
 const links = [
   { to: '/', label: 'Home', end: true },
-  { to: '/nutrition-plan', label: 'Nutrition Plan' },
-  { to: '/meal-plans', label: 'Meal Plans' },
+  { to: '/menu', label: 'Menu' },
   { to: '/about', label: 'About' },
+  { to: '/location', label: 'Location' },
   { to: '/contact', label: 'Contact' },
 ]
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
+  const { theme, toggleTheme } = useApp()
 
   const linkClass = ({ isActive }) =>
-    `px-3 py-2 text-sm font-medium transition-colors ${
-      isActive ? 'text-green-700' : 'text-gray-600 hover:text-green-700'
+    `px-3 py-2 text-sm font-medium rounded-full transition-colors ${
+      isActive
+        ? 'text-orange-600 dark:text-orange-400'
+        : 'text-gray-700 hover:text-orange-600 dark:text-gray-300 dark:hover:text-orange-400'
     }`
 
   return (
-    <header className="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur border-b border-gray-100">
-      <nav className="max-w-7xl mx-auto px-4 md:px-8 lg:px-16 flex items-center justify-between h-16">
+    <header className="fixed top-0 inset-x-0 z-50 backdrop-blur bg-orange-50/80 dark:bg-gray-950/80 border-b border-orange-100 dark:border-gray-800">
+      <nav className="max-w-7xl mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
-          <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-green-600 text-white font-bold">N</span>
-          <span className="text-lg font-bold text-gray-900">Nourish</span>
+          <span className="text-2xl">🌸</span>
+          <span className="text-xl font-bold tracking-tight">Bloom</span>
         </Link>
-
         <div className="hidden md:flex items-center gap-1">
           {links.map((l) => (
             <NavLink key={l.to} to={l.to} end={l.end} className={linkClass}>
               {l.label}
             </NavLink>
           ))}
-          <Link
-            to="/contact"
-            className="ml-3 rounded-lg bg-green-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-700 transition-colors"
+          <button
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+            className="ml-2 p-2 rounded-full hover:bg-orange-100 dark:hover:bg-gray-800 transition-colors"
           >
-            Get Started
+            {theme === 'light' ? '🌙' : '☀️'}
+          </button>
+          <Link
+            to="/location"
+            className="ml-2 px-4 py-2 rounded-full bg-orange-500 text-white text-sm font-semibold hover:bg-orange-600 transition-colors"
+          >
+            Find Location
           </Link>
         </div>
-
-        <button
-          className="md:hidden inline-flex items-center justify-center h-10 w-10 rounded-lg text-gray-700 hover:bg-gray-100"
-          onClick={() => setOpen((v) => !v)}
-          aria-label="Toggle menu"
-        >
-          <span className="text-2xl leading-none">{open ? '\u2715' : '\u2630'}</span>
-        </button>
+        <div className="md:hidden flex items-center gap-2">
+          <button onClick={toggleTheme} aria-label="Toggle theme" className="p-2 rounded-full hover:bg-orange-100 dark:hover:bg-gray-800">
+            {theme === 'light' ? '🌙' : '☀️'}
+          </button>
+          <button onClick={() => setOpen((o) => !o)} aria-label="Menu" className="p-2 rounded-full hover:bg-orange-100 dark:hover:bg-gray-800">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={open ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'} />
+            </svg>
+          </button>
+        </div>
       </nav>
-
       {open && (
-        <div className="md:hidden bg-white border-t border-gray-100 px-4 py-3 space-y-1">
+        <div className="md:hidden px-4 pb-4 flex flex-col gap-1 bg-orange-50/95 dark:bg-gray-950/95 border-b border-orange-100 dark:border-gray-800">
           {links.map((l) => (
-            <NavLink
-              key={l.to}
-              to={l.to}
-              end={l.end}
-              onClick={() => setOpen(false)}
-              className={({ isActive }) =>
-                `block rounded-lg px-3 py-2 text-base font-medium ${
-                  isActive ? 'bg-green-50 text-green-700' : 'text-gray-700 hover:bg-gray-50'
-                }`
-              }
-            >
+            <NavLink key={l.to} to={l.to} end={l.end} onClick={() => setOpen(false)} className={linkClass}>
               {l.label}
             </NavLink>
           ))}
           <Link
-            to="/contact"
+            to="/location"
             onClick={() => setOpen(false)}
-            className="block rounded-lg bg-green-600 px-3 py-2 text-center text-base font-semibold text-white hover:bg-green-700"
+            className="mt-2 px-4 py-2 rounded-full bg-orange-500 text-white text-sm font-semibold text-center hover:bg-orange-600"
           >
-            Get Started
+            Find Location
           </Link>
         </div>
       )}
