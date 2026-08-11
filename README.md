@@ -14,7 +14,7 @@ You can retrieve and print the list of files changed in a Pull Request (PR) by r
 
 This workflow fetches the changed file paths for the current Pull Request using the GitHub REST API and prints:
 
-- Each changed file path (one per line)
+- Each changed file panth (one per line)
 - The total number of changed files
 
 ### When it runs
